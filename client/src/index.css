@@ -1,0 +1,74 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&family=Inter:wght@400;500;600&display=swap');
+
+.font-serif-display {
+  font-family: "Source Serif 4", Georgia, serif;
+}
+body {
+  font-family: "Inter", system-ui, sans-serif;
+}
+
+/* ==================================================================== */
+/* Système de thème — variables centralisées                            */
+/* ==================================================================== */
+/* Toute la structure de l'appli (fonds, textes, bordures) consulte ces  */
+/* variables plutôt que des classes Tailwind dark: éparpillées. Changer  */
+/* le thème revient à changer ces valeurs à UN seul endroit — impossible */
+/* d'oublier un composant.                                               */
+/* Les couleurs d'accent (boutons, badges, icônes de rôle) restent des   */
+/* classes Tailwind fixes (bg-teal-800, bg-rose-700, etc.) et NE passent */
+/* PAS par ce système : elles doivent rester identiques dans les deux    */
+/* thèmes, comme demandé.                                                */
+
+:root {
+  --fx-page: #fafaf9;      /* fond général de l'application */
+  --fx-surface: #ffffff;    /* cartes, modales, tableaux, champs */
+  --fx-surface-2: #f5f5f4;  /* fond légèrement différencié (en-tête de tableau, lignes alternées) */
+  --fx-hover: #f5f5f4;      /* survol sur fond clair */
+  --fx-border: #e7e5e4;     /* bordures / séparateurs discrets */
+  --fx-border-strong: #d6d3d1; /* bordures de champs de formulaire */
+  --fx-text: #1c1917;       /* texte principal */
+  --fx-text-2: #57534e;     /* texte secondaire */
+  --fx-text-muted: #a8a29e; /* texte discret / placeholder */
+  --fx-placeholder: #a8a29e;
+}
+
+.dark {
+  --fx-page: #0c0a09;
+  --fx-surface: #1c1917;
+  --fx-surface-2: #292524;
+  --fx-hover: #292524;
+  --fx-border: #44403c;
+  --fx-border-strong: #57534e;
+  --fx-text: #f5f5f4;
+  --fx-text-2: #d6d3d1;
+  --fx-text-muted: #a8a29e;
+  --fx-placeholder: #78716c;
+}
+
+.fx-page { background-color: var(--fx-page); }
+.fx-surface { background-color: var(--fx-surface); }
+.fx-surface-2 { background-color: var(--fx-surface-2); }
+.fx-hover:hover { background-color: var(--fx-hover); }
+.fx-border { border-color: var(--fx-border); }
+.fx-border-strong { border-color: var(--fx-border-strong); }
+.fx-divide > :not([hidden]) ~ :not([hidden]) { border-color: var(--fx-border); }
+.fx-text { color: var(--fx-text); }
+.fx-text-2 { color: var(--fx-text-2); }
+.fx-text-muted { color: var(--fx-text-muted); }
+.fx-input {
+  background-color: var(--fx-surface);
+  border-color: var(--fx-border-strong);
+  color: var(--fx-text);
+}
+.fx-input::placeholder { color: var(--fx-placeholder); }
+
+@keyframes fx-pop-in {
+  from { opacity: 0; transform: translateY(10px) scale(0.96); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+.fx-chat-pop { animation: fx-pop-in 0.18s ease-out; }
+
